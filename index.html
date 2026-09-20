@@ -42,15 +42,7 @@ header.nav nav a:hover{color:var(--cyan); background:rgba(0,229,255,.08)}
 .mobilemenu.open{display:flex}
 @media (max-width:640px){ header.nav nav{display:none} .menubtn{display:inline-flex; align-items:center} }
 
-#top,#about{scroll-margin-top:64px}
-.about{margin-top:20px}
-.about p{color:var(--ink-2); margin:0 0 10px}
-.about p:last-child{margin-bottom:0}
-.about ul{margin:0 0 10px; padding-inline-start:20px; color:var(--ink-2)}
-.about li{margin-bottom:6px}
-.about strong{color:var(--ink)}
-.about code{font-size:.92em; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; padding:1px 6px}
-.about a{color:var(--cyan)}
+#top{scroll-margin-top:64px}
 
 .hero{position:relative; overflow:hidden; background:radial-gradient(900px 420px at 50% -20%, #0e1930 0%, var(--bg) 65%); padding:2.6rem 1rem 2.4rem; text-align:center}
 .hero canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
@@ -141,8 +133,9 @@ footer a{color:var(--accent)}
       বেতন নির্ধারণী ২০২৬
     </a>
     <nav>
-      <a href="https://www.statmania.info" target="_blank" rel="noopener">হোম</a>
-      <a href="#about">সম্পর্কে</a>
+      <a href="#top">হোম</a>
+      <a href="about.html">সম্পর্কে</a>
+      <a href="https://www.statmania.info" target="_blank" rel="noopener">Stat Mania</a>
     </nav>
     <button class="menubtn" id="menubtn" type="button" aria-label="মেনু">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -150,7 +143,7 @@ footer a{color:var(--accent)}
   </div>
   <div class="mobilemenu" id="mobilemenu">
     <a href="#top">হোম</a>
-    <a href="#about">সম্পর্কে</a>
+    <a href="about.html">সম্পর্কে</a>
     <a href="https://www.statmania.info" target="_blank" rel="noopener">Stat Mania</a>
   </div>
 </header>
@@ -242,42 +235,6 @@ footer a{color:var(--accent)}
   </div>
 
   <div class="note" id="caveat"></div>
-
-  <div class="card card-pad about" id="about" style="margin-top:20px">
-    <div class="legend">সম্পর্কে</div>
-    <p>জাতীয় বেতনস্কেল, ২০২৬ (এস.আর.ও. নং ৩৪৭-আইন/২০২৬, অর্থ মন্ত্রণালয়, ১৭ সেপ্টেম্বর ২০২৬) অনুযায়ী সরকারি কর্মচারীদের মূল বেতন নির্ধারণ, ধাপে ধাপে প্রাপ্য অংশ, এবং ৩১ ডিসেম্বর ২০২৭ পর্যন্ত চাকরি (বেতন ও ভাতাদি) আদেশ, ২০১৫ এর হারে চলমান ভাতাদির হিসাব — একটি পাতায়।</p>
-    <p><code>index.html</code> একটি সম্পূর্ণ স্বয়ংসম্পূর্ণ ফাইল — সরাসরি ব্রাউজারে খুললেও চলবে। কোনো তথ্য সংরক্ষণ বা সার্ভারে পাঠানো হয় না, সবকিছু আপনার ব্রাউজারেই হিসাব হয়।</p>
-
-    <div class="legend mt">যা আছে</div>
-    <ul>
-      <li>২০টি গ্রেড, ২০১৫ স্কেলের ধাপ থেকে বেছে নেওয়া বা নিজে অঙ্ক লেখা</li>
-      <li>অনুচ্ছেদ ৫(খ) এর পার্থক্য পদ্ধতির প্রতিটি ধাপ, সাথে অনুচ্ছেদ ৯(২) এর বার্ষিক ইনক্রিমেন্ট</li>
-      <li>চারটি সময়কাল পাশাপাশি: জুলাই ২৬–ডিসে ২৬ (৪০%/৫০%), জানু ২৭–জুন ২৭ (৭০%/৭৫%), জুলাই ২৭ থেকে শতভাগ, জানু ২০২৮ থেকে নতুন ভাতার হার</li>
-      <li>২০১৫ আদেশের বাড়ি ভাড়া (এলাকাভেদে স্তর ও ন্যূনতম অঙ্ক), চিকিৎসা, টিফিন, যাতায়াত, শিক্ষা সহায়ক ভাতা</li>
-      <li>উৎসব ও নববর্ষ ভাতার বাৎসরিক হিসাব (২০% → ১৫% পরিবর্তনসহ)</li>
-    </ul>
-
-    <div class="legend mt">হিসাবের পদ্ধতি</div>
-    <p>মূল বেতন নির্ধারণ (অনুচ্ছেদ ৫ খ):</p>
-    <ul>
-      <li>পার্থক্য = বর্তমান মূল বেতন − ২০১৫ স্কেলের প্রারম্ভিক ধাপ</li>
-      <li>লক্ষ্য অঙ্ক = ২০২৬ স্কেলের প্রারম্ভিক ধাপ + পার্থক্য</li>
-      <li>নির্ধারিত = লক্ষ্য অঙ্কের সমান ধাপ, না থাকলে পরবর্তী উচ্চতর ধাপ</li>
-      <li>তারপর ১ জুলাই ২০২৬ এ ১টি বার্ষিক ইনক্রিমেন্ট (অনুচ্ছেদ ৯(২))</li>
-    </ul>
-    <p>ভাতার হার (২০১৫ আদেশ, ৩১ ডিসেম্বর ২০২৭ পর্যন্ত প্রযোজ্য) — বাড়ি ভাড়া মূল বেতনের স্তরভিত্তিক শতাংশ ও ন্যূনতম অঙ্ক; চিকিৎসা ১৫০০; টিফিন ২০০ (গ্রেড ১১–২০); যাতায়াত ৩০০; শিক্ষা সহায়ক সন্তানপ্রতি ৫০০, সর্বোচ্চ ১০০০।</p>
-
-    <div class="legend mt">সীমাবদ্ধতা</div>
-    <ul>
-      <li>এটি একটি সহায়ক হিসাবযন্ত্র, সরকারি দলিল নয়। চূড়ান্ত অঙ্ক নির্ধারিত হবে হিসাবরক্ষণ অফিসের বেতন নির্ধারণী বিবরণী (pay fixation statement) অনুযায়ী।</li>
-      <li>উচ্চতর গ্রেড, সিলেকশন গ্রেড, টাইম স্কেল, পদোন্নতি, প্রেষণ, ছুটি বা সাময়িক বরখাস্ত অবস্থার বিশেষ বিধানগুলো (অনুচ্ছেদ ৫ ঘ–ঝ, অনুচ্ছেদ ৬) হিসাবে ধরা হয়নি।</li>
-      <li>পেনশন ও গ্র্যাচুইটি (অনুচ্ছেদ ৭–৮) এই সংস্করণে নেই।</li>
-      <li>পাহাড়ি, হাওড়/দ্বীপ/চর, ধোলাই, কার্যভার, আপ্যায়ন ও প্রতিবন্ধী সন্তান ভাতা "অন্যান্য ভাতা" ঘরে নিজে যোগ করতে হবে।</li>
-    </ul>
-
-    <p><strong>লাইসেন্স:</strong> MIT। গেজেটের বিষয়বস্তু বাংলাদেশ সরকারের সরকারি দলিল।</p>
-    <p><strong>কৃতজ্ঞতা স্বীকার:</strong> এই প্রকল্পটি <a href="https://astafar22.github.io/beton-calculator/" target="_blank" rel="noopener">astafar22/beton-calculator</a> থেকে ফর্ক করে তৈরি।</p>
-  </div>
 </main>
 
 </div>
