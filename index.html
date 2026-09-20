@@ -1,59 +1,78 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#05070d;color:#e8ecf7}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>বেতন নির্ধারণী ২০২৬</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#F1F4F3; --surface:#FFFFFF; --surface-2:#F7F9F8;
-  --ink:#15201C; --ink-2:#3C4C46; --muted:#6B7C76; --line:#DBE3E0; --line-2:#C7D3CF;
-  --accent:#0F5E4E; --accent-ink:#0B4539; --accent-soft:#E2EFEA;
-  --alt:#2E4B7A; --alt-soft:#E6ECF5;
-  --warn:#8A5A10; --warn-soft:#F7EEDD;
-  --shadow:0 1px 2px rgba(20,40,34,.06), 0 8px 24px -16px rgba(20,40,34,.25);
-  --r:10px;
-}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
-  --bg:#0D1311; --surface:#151D1A; --surface-2:#1B2522;
-  --ink:#E7EFEB; --ink-2:#BCCAC4; --muted:#8B9C96; --line:#253230; --line-2:#334340;
-  --accent:#54C9A8; --accent-ink:#8FE0C6; --accent-soft:#13302A;
-  --alt:#8CB0EC; --alt-soft:#18243A;
-  --warn:#DFAA4E; --warn-soft:#2A2213;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
-}}
-:root[data-theme="dark"]{
-  --bg:#0D1311; --surface:#151D1A; --surface-2:#1B2522;
-  --ink:#E7EFEB; --ink-2:#BCCAC4; --muted:#8B9C96; --line:#253230; --line-2:#334340;
-  --accent:#54C9A8; --accent-ink:#8FE0C6; --accent-soft:#13302A;
-  --alt:#8CB0EC; --alt-soft:#18243A;
-  --warn:#DFAA4E; --warn-soft:#2A2213;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  --bg:#05070d; --bg2:#0a0f1e; --surface:rgba(255,255,255,.045); --surface-2:rgba(255,255,255,.02);
+  --ink:#e8ecf7; --ink-2:#c7cee6; --muted:#9aa4c2; --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --cyan:#00e5ff; --purple:#a855f7; --pink:#ff2fb4;
+  --accent:var(--cyan); --accent-ink:#8ff0ff; --accent-soft:rgba(0,229,255,.12);
+  --alt:var(--purple); --alt-soft:rgba(168,85,247,.14);
+  --warn:#f2b84b; --warn-soft:rgba(242,184,75,.12);
+  --shadow:0 20px 45px rgba(0,0,0,.45), 0 0 30px rgba(0,229,255,.08);
+  --r:1.1rem;
 }
 *{box-sizing:border-box}
+html{color-scheme:dark}
+html,body{overflow-x:hidden; width:100%}
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:"Noto Sans Bengali","Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif;
   font-size:15px; line-height:1.65; -webkit-text-size-adjust:100%;
 }
+::-webkit-scrollbar{width:8px;height:8px} ::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:#3a4a6b;border-radius:10px} ::-webkit-scrollbar-thumb:hover{background:#54688f}
 .wrap{max-width:1140px; margin:0 auto; padding-inline:16px; padding-block:0 56px}
 h1,h2,h3{font-family:"Tiro Bangla","Noto Serif Bengali",Georgia,serif; font-weight:400; text-wrap:balance; margin:0}
-.masthead{border-bottom:1px solid var(--line); background:var(--surface)}
-.masthead .wrap{padding-block:26px 22px}
-.crest{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:6px}
-.crest .sro{font-size:11.5px; letter-spacing:.09em; text-transform:uppercase;
-  color:var(--accent); background:var(--accent-soft); padding:3px 9px; border-radius:99px; font-weight:600}
-.crest .date{font-size:12.5px; color:var(--muted)}
-h1{font-size:clamp(25px,5.2vw,36px); line-height:1.25; letter-spacing:-.01em}
-.sub{color:var(--ink-2); max-width:62ch; margin-top:8px; font-size:14.5px}
-.themebtn{position:absolute; top:0; right:16px; margin-top:26px; background:none; border:1px solid var(--line-2);
-  color:var(--ink-2); border-radius:99px; padding:5px 12px; font:inherit; font-size:12.5px; cursor:pointer}
-.themebtn:hover{border-color:var(--accent); color:var(--accent)}
-.mastinner{position:relative}
+
+header.nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.045); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+header.nav .navwrap{max-width:1140px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between}
+header.nav .brand{display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink); font-family:"Tiro Bangla",serif; font-size:17px}
+header.nav .brand svg{width:22px; height:22px; color:var(--cyan); filter:drop-shadow(0 0 6px rgba(0,229,255,.5))}
+header.nav nav{display:flex; gap:6px}
+header.nav nav a{color:var(--ink-2); text-decoration:none; font-size:14px; padding:7px 12px; border-radius:99px; transition:color .2s,background .2s}
+header.nav nav a:hover{color:var(--cyan); background:rgba(0,229,255,.08)}
+.menubtn{display:none; background:none; border:1px solid var(--line-2); color:var(--ink-2); border-radius:8px; padding:6px 9px; cursor:pointer}
+.mobilemenu{display:none; flex-direction:column; gap:2px; padding:6px 16px 12px; border-top:1px solid var(--line)}
+.mobilemenu a{color:var(--ink-2); text-decoration:none; font-size:14.5px; padding:9px 6px; border-radius:8px}
+.mobilemenu a:hover{color:var(--cyan); background:rgba(0,229,255,.08)}
+.mobilemenu.open{display:flex}
+@media (max-width:640px){ header.nav nav{display:none} .menubtn{display:inline-flex; align-items:center} }
+
+#top,#about{scroll-margin-top:64px}
+.about{margin-top:20px}
+.about p{color:var(--ink-2); margin:0 0 10px}
+.about p:last-child{margin-bottom:0}
+.about ul{margin:0 0 10px; padding-inline-start:20px; color:var(--ink-2)}
+.about li{margin-bottom:6px}
+.about strong{color:var(--ink)}
+.about code{font-size:.92em; background:var(--surface-2); border:1px solid var(--line); border-radius:4px; padding:1px 6px}
+.about a{color:var(--cyan)}
+
+.hero{position:relative; overflow:hidden; background:radial-gradient(900px 420px at 50% -20%, #0e1930 0%, var(--bg) 65%); padding:2.6rem 1rem 2.4rem; text-align:center}
+.hero canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+.hero .inner{position:relative; z-index:2; max-width:760px; margin:0 auto}
+.crest{display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:14px}
+.crest .sro{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--cyan);
+  border:1px solid rgba(0,229,255,.25); border-radius:99px; padding:.3rem .9rem; background:rgba(0,229,255,.06);
+  box-shadow:0 0 20px rgba(0,229,255,.15)}
+.crest .date{font-size:12px; color:var(--muted)}
+h1{font-size:clamp(26px,5.4vw,40px); line-height:1.2; letter-spacing:-.01em; margin-bottom:.5rem;
+  background:linear-gradient(90deg, var(--cyan), #7dd3fc 25%, var(--purple) 55%, var(--pink) 85%);
+  -webkit-background-clip:text; background-clip:text; color:transparent; background-size:200% auto;
+  animation:sm-move 6s ease-in-out infinite}
+@keyframes sm-move{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.sub{color:var(--muted); max-width:62ch; margin:0 auto; font-size:14.5px}
 
 .grid{display:grid; grid-template-columns:352px minmax(0,1fr); gap:26px; margin-top:26px; align-items:start}
 @media (max-width:880px){ .grid{grid-template-columns:1fr; gap:20px} }
+.grid,.grid>*{min-width:0}
 
-.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow)}
+.card{background:linear-gradient(160deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); border:1px solid var(--line);
+  border-radius:var(--r); box-shadow:none; backdrop-filter:blur(6px); min-width:0; max-width:100%}
 .card-pad{padding:18px}
 .panel{position:sticky; top:calc(env(safe-area-inset-top,0px) + 14px)}
 @media (max-width:880px){ .panel{position:static} }
@@ -85,7 +104,7 @@ select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid 
 .hl.now{background:var(--accent-soft)} .hl.now .v{color:var(--accent-ink)}
 
 table{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; font-size:14px}
-.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%}
 th,td{text-align:right; padding:8px 10px; border-bottom:1px solid var(--line)}
 th:first-child,td:first-child{text-align:left; padding-left:0}
 thead th{font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted);
@@ -109,22 +128,43 @@ summary::marker{color:var(--muted)}
 .chips{display:flex; flex-wrap:wrap; gap:5px; margin-top:10px}
 .chip{font-size:12.5px; font-variant-numeric:tabular-nums; padding:3px 8px; border-radius:6px;
   background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2)}
-.chip.on{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
-:root[data-theme="dark"] .chip.on,:root:not([data-theme="light"]) .chip.on{color:#07110E}
+.chip.on{background:linear-gradient(90deg,var(--cyan),#38bdf8); border-color:var(--cyan); color:#04101c; font-weight:700}
 footer{margin-top:30px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted)}
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){ .hl,.card{transition:background-color .2s} }
 </style>
 
-<div class="masthead"><div class="wrap"><div class="mastinner">
-  <button class="themebtn" id="theme" type="button">থিম</button>
-  <div class="crest">
-    <span class="sro">এস.আর.ও. নং ৩৪৭-আইন/২০২৬</span>
-    <span class="date">অর্থ মন্ত্রণালয় · বাংলাদেশ গেজেট, অতিরিক্ত · ১৭ সেপ্টেম্বর ২০২৬</span>
+<header class="nav">
+  <div class="navwrap">
+    <a href="#top" class="brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3.75a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6a3 3 0 0 0-3-3V6.75A5.25 5.25 0 0 0 12 1.5Zm3.75 9V6.75a3.75 3.75 0 1 0-7.5 0v3.75h7.5Z" clip-rule="evenodd"/></svg>
+      বেতন নির্ধারণী ২০২৬
+    </a>
+    <nav>
+      <a href="#top">হোম</a>
+      <a href="#about">সম্পর্কে</a>
+    </nav>
+    <button class="menubtn" id="menubtn" type="button" aria-label="মেনু">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </div>
-  <h1>বেতন নির্ধারণী ২০২৬</h1>
-  <p class="sub">জাতীয় বেতনস্কেল, ২০২৬ অনুযায়ী মূল বেতন নির্ধারণ, ধাপে ধাপে প্রাপ্য অংশ, আর ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ আদেশের হারে চলমান ভাতাদি — সব এক পাতায়।</p>
-</div></div></div>
+  <div class="mobilemenu" id="mobilemenu">
+    <a href="#top">হোম</a>
+    <a href="#about">সম্পর্কে</a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <canvas id="sm-canvas" aria-hidden="true"></canvas>
+  <div class="inner">
+    <div class="crest">
+      <span class="sro">এস.আর.ও. নং ৩৪৭-আইন/২০২৬</span>
+      <span class="date">অর্থ মন্ত্রণালয় · বাংলাদেশ গেজেট, অতিরিক্ত · ১৭ সেপ্টেম্বর ২০২৬</span>
+    </div>
+    <h1>বেতন নির্ধারণী ২০২৬</h1>
+    <p class="sub">জাতীয় বেতনস্কেল, ২০২৬ অনুযায়ী মূল বেতন নির্ধারণ, ধাপে ধাপে প্রাপ্য অংশ, আর ৩১ ডিসেম্বর ২০২৭ পর্যন্ত ২০১৫ আদেশের হারে চলমান ভাতাদি — সব এক পাতায়।</p>
+  </div>
+</div>
 
 <div class="wrap"><div class="grid">
 
@@ -201,6 +241,42 @@ footer a{color:var(--accent)}
   </div>
 
   <div class="note" id="caveat"></div>
+
+  <div class="card card-pad about" id="about" style="margin-top:20px">
+    <div class="legend">সম্পর্কে</div>
+    <p>জাতীয় বেতনস্কেল, ২০২৬ (এস.আর.ও. নং ৩৪৭-আইন/২০২৬, অর্থ মন্ত্রণালয়, ১৭ সেপ্টেম্বর ২০২৬) অনুযায়ী সরকারি কর্মচারীদের মূল বেতন নির্ধারণ, ধাপে ধাপে প্রাপ্য অংশ, এবং ৩১ ডিসেম্বর ২০২৭ পর্যন্ত চাকরি (বেতন ও ভাতাদি) আদেশ, ২০১৫ এর হারে চলমান ভাতাদির হিসাব — একটি পাতায়।</p>
+    <p><code>index.html</code> একটি সম্পূর্ণ স্বয়ংসম্পূর্ণ ফাইল — সরাসরি ব্রাউজারে খুললেও চলবে। কোনো তথ্য সংরক্ষণ বা সার্ভারে পাঠানো হয় না, সবকিছু আপনার ব্রাউজারেই হিসাব হয়।</p>
+
+    <div class="legend mt">যা আছে</div>
+    <ul>
+      <li>২০টি গ্রেড, ২০১৫ স্কেলের ধাপ থেকে বেছে নেওয়া বা নিজে অঙ্ক লেখা</li>
+      <li>অনুচ্ছেদ ৫(খ) এর পার্থক্য পদ্ধতির প্রতিটি ধাপ, সাথে অনুচ্ছেদ ৯(২) এর বার্ষিক ইনক্রিমেন্ট</li>
+      <li>চারটি সময়কাল পাশাপাশি: জুলাই ২৬–ডিসে ২৬ (৪০%/৫০%), জানু ২৭–জুন ২৭ (৭০%/৭৫%), জুলাই ২৭ থেকে শতভাগ, জানু ২০২৮ থেকে নতুন ভাতার হার</li>
+      <li>২০১৫ আদেশের বাড়ি ভাড়া (এলাকাভেদে স্তর ও ন্যূনতম অঙ্ক), চিকিৎসা, টিফিন, যাতায়াত, শিক্ষা সহায়ক ভাতা</li>
+      <li>উৎসব ও নববর্ষ ভাতার বাৎসরিক হিসাব (২০% → ১৫% পরিবর্তনসহ)</li>
+    </ul>
+
+    <div class="legend mt">হিসাবের পদ্ধতি</div>
+    <p>মূল বেতন নির্ধারণ (অনুচ্ছেদ ৫ খ):</p>
+    <ul>
+      <li>পার্থক্য = বর্তমান মূল বেতন − ২০১৫ স্কেলের প্রারম্ভিক ধাপ</li>
+      <li>লক্ষ্য অঙ্ক = ২০২৬ স্কেলের প্রারম্ভিক ধাপ + পার্থক্য</li>
+      <li>নির্ধারিত = লক্ষ্য অঙ্কের সমান ধাপ, না থাকলে পরবর্তী উচ্চতর ধাপ</li>
+      <li>তারপর ১ জুলাই ২০২৬ এ ১টি বার্ষিক ইনক্রিমেন্ট (অনুচ্ছেদ ৯(২))</li>
+    </ul>
+    <p>ভাতার হার (২০১৫ আদেশ, ৩১ ডিসেম্বর ২০২৭ পর্যন্ত প্রযোজ্য) — বাড়ি ভাড়া মূল বেতনের স্তরভিত্তিক শতাংশ ও ন্যূনতম অঙ্ক; চিকিৎসা ১৫০০; টিফিন ২০০ (গ্রেড ১১–২০); যাতায়াত ৩০০; শিক্ষা সহায়ক সন্তানপ্রতি ৫০০, সর্বোচ্চ ১০০০।</p>
+
+    <div class="legend mt">সীমাবদ্ধতা</div>
+    <ul>
+      <li>এটি একটি সহায়ক হিসাবযন্ত্র, সরকারি দলিল নয়। চূড়ান্ত অঙ্ক নির্ধারিত হবে হিসাবরক্ষণ অফিসের বেতন নির্ধারণী বিবরণী (pay fixation statement) অনুযায়ী।</li>
+      <li>উচ্চতর গ্রেড, সিলেকশন গ্রেড, টাইম স্কেল, পদোন্নতি, প্রেষণ, ছুটি বা সাময়িক বরখাস্ত অবস্থার বিশেষ বিধানগুলো (অনুচ্ছেদ ৫ ঘ–ঝ, অনুচ্ছেদ ৬) হিসাবে ধরা হয়নি।</li>
+      <li>পেনশন ও গ্র্যাচুইটি (অনুচ্ছেদ ৭–৮) এই সংস্করণে নেই।</li>
+      <li>পাহাড়ি, হাওড়/দ্বীপ/চর, ধোলাই, কার্যভার, আপ্যায়ন ও প্রতিবন্ধী সন্তান ভাতা "অন্যান্য ভাতা" ঘরে নিজে যোগ করতে হবে।</li>
+    </ul>
+
+    <p><strong>লাইসেন্স:</strong> MIT। গেজেটের বিষয়বস্তু বাংলাদেশ সরকারের সরকারি দলিল।</p>
+    <p><strong>কৃতজ্ঞতা স্বীকার:</strong> এই প্রকল্পটি <a href="https://astafar22.github.io/beton-calculator/" target="_blank" rel="noopener">astafar22/beton-calculator</a> থেকে ফর্ক করে তৈরি।</p>
+  </div>
 </main>
 
 </div>
@@ -208,6 +284,7 @@ footer a{color:var(--accent)}
 <footer>
   হিসাব এস.আর.ও. নং ৩৪৭-আইন/২০২৬ (জাতীয় বেতনস্কেল, ২০২৬) এর অনুচ্ছেদ ১(৩), ৩, ৫, ৯, ১২–২১ এবং চাকরি (বেতন ও ভাতাদি) আদেশ, ২০১৫ এর ভাতার হার অনুসরণ করে করা হয়েছে। বেতনস্কেলের ধাপসমূহ গেজেটের মূল PDF থেকে সরাসরি নেওয়া।
   চূড়ান্ত অঙ্ক নির্ভর করবে হিসাবরক্ষণ অফিসের বেতন নির্ধারণী বিবরণীর উপর — এটি একটি সহায়ক হিসাবযন্ত্র, সরকারি দলিল নয়।
+  ফর্ক করা হয়েছে <a href="https://astafar22.github.io/beton-calculator/" target="_blank" rel="noopener">astafar22/beton-calculator</a> থেকে।
 </footer>
 </div>
 <script>
@@ -414,16 +491,66 @@ gradeSel.addEventListener('change', () => { $('custom').value=''; fillSteps(); r
 ['step','custom','area','govhouse','city','age50','kids','other','hrover']
   .forEach(id => $(id).addEventListener('input', render));
 
-$('theme').addEventListener('click', () => {
-  const r = document.documentElement;
-  const dark = r.getAttribute('data-theme') === 'dark' ||
-    (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
-  r.setAttribute('data-theme', dark ? 'light' : 'dark');
-  try { localStorage.setItem('bt', dark ? 'light' : 'dark'); } catch(e){}
-});
-try { const t = localStorage.getItem('bt'); if (t) document.documentElement.setAttribute('data-theme', t); } catch(e){}
-
 fillSteps(); render();
+
+const menubtn = $('menubtn'), mobilemenu = $('mobilemenu');
+menubtn.addEventListener('click', () => mobilemenu.classList.toggle('open'));
+mobilemenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilemenu.classList.remove('open')));
+</script>
+
+<script>
+(function () {
+  var canvas = document.getElementById('sm-canvas');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var wrap = canvas.parentElement;
+  var W, H, dpr, particles = [];
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var count = Math.min(50, Math.floor((window.innerWidth || 1200) / 24));
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = wrap.clientWidth; H = wrap.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function init() {
+    particles = [];
+    for (var i = 0; i < count; i++) {
+      particles.push({ x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, r: Math.random()*1.6+0.6 });
+    }
+  }
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+    var maxDist = 120;
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      for (var j = i + 1; j < particles.length; j++) {
+        var q = particles[j];
+        var dx = p.x - q.x, dy = p.y - q.y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < maxDist) {
+          ctx.strokeStyle = 'rgba(0,229,255,' + (0.16 * (1 - dist / maxDist)) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+        }
+      }
+    }
+    for (var k = 0; k < particles.length; k++) {
+      var pt = particles[k];
+      ctx.beginPath(); ctx.fillStyle = 'rgba(180,225,255,0.85)';
+      ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+  resize(); init(); step();
+  window.addEventListener('resize', function () { resize(); init(); });
+})();
 </script>
 
 </body></html>
