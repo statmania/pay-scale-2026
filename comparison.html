@@ -80,14 +80,13 @@ h1{font-size:clamp(26px,5.4vw,40px); line-height:1.2; letter-spacing:-.01em; mar
 .sm-panel::before{top:8px; left:8px; border-top:2px solid var(--gold); border-left:2px solid var(--gold)}
 .sm-panel::after{bottom:8px; right:8px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold)}
 .panel-inner{position:relative; z-index:1; background:rgba(8,13,10,.74); backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
-  padding:18px; border-radius:calc(var(--r) - 2px)}
+  padding:18px; border-radius:calc(var(--r) - 2px); box-shadow:inset 0 1px 0 rgba(234,179,8,.2)}
 .sm-panel .legend{color:var(--ink); text-shadow:0 0 12px rgba(234,179,8,.25)}
 .sm-panel thead th{color:var(--gold); text-shadow:0 0 8px rgba(234,179,8,.3); border-bottom:1px solid rgba(234,179,8,.35)}
-.sm-panel .col-2026{background:rgba(34,197,94,.16)}
-.sm-panel tr.hl-row td{background:rgba(234,179,8,.14)}
-.sm-panel tr.hl-row td.lbl{color:var(--gold)}
+.sm-panel thead th.col-2026{color:var(--accent-ink); text-shadow:0 0 8px rgba(34,197,94,.35)}
 .sm-panel .chip{background:rgba(5,8,7,.65); border-color:rgba(255,255,255,.16); box-shadow:0 0 0 1px rgba(0,0,0,.2) inset}
-.sm-panel tbody tr:hover td{background:rgba(255,255,255,.03)}
+.sm-panel tbody tr:nth-child(even) td{background:rgba(255,255,255,.035)}
+.sm-panel tbody tr:hover td{background:rgba(234,179,8,.07)}
 
 .field{display:flex; flex-direction:column; gap:5px; max-width:360px}
 label{font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
@@ -104,23 +103,26 @@ select:focus-visible{outline:2px solid var(--green); outline-offset:1px; border-
 
 table{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; font-size:14px}
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%}
-th,td{text-align:right; padding:8px 10px; border-bottom:1px solid var(--line)}
+th,td{text-align:right; padding:9px 12px; border-bottom:1px solid var(--line); transition:background .15s ease}
 th:first-child,td:first-child{text-align:left; padding-left:0}
-thead th{font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted);
+thead th{font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted);
   font-weight:600; border-bottom:1px solid var(--line-2); white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
-td.lbl,th.lbl{text-align:left; color:var(--ink-2); white-space:nowrap}
-.col-2026{background:var(--accent-soft)}
-.up{color:var(--accent-ink); font-weight:600}
+tbody tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+tbody tr:hover td{background:rgba(34,197,94,.08)}
+td.lbl,th.lbl{text-align:left; color:var(--ink-2); white-space:nowrap; font-weight:600}
+thead th.col-2026{color:var(--accent-ink)}
+td:not(.col-2026)+td.col-2026, th:not(.col-2026)+th.col-2026{border-inline-start:1px dashed var(--line-2)}
+.up{color:var(--accent-ink); font-weight:700}
 .muted-cell{color:var(--muted)}
-.pill{display:inline-block; font-size:11px; padding:1px 7px; border-radius:4px;
+.pill{display:inline-block; font-size:11px; padding:1px 7px; border-radius:99px;
   background:var(--alt-soft); color:var(--alt); font-weight:600}
-tr.hl-row td{background:var(--accent-soft)}
-tr.hl-row td.lbl{color:var(--accent-ink); font-weight:700}
 td.steps-cell,th.steps-cell{text-align:left; vertical-align:top}
-.chips{display:flex; flex-wrap:wrap; gap:5px}
-.chip{display:inline-block; font-size:12.5px; font-variant-numeric:tabular-nums; padding:3px 8px; border-radius:4px;
-  background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2); white-space:nowrap}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{display:inline-block; font-size:12.5px; font-variant-numeric:tabular-nums; padding:4px 10px; border-radius:99px;
+  background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2); white-space:nowrap;
+  transition:border-color .15s ease, box-shadow .15s ease, color .15s ease}
+.chip:hover{border-color:var(--accent-ink); color:var(--ink); box-shadow:0 0 10px rgba(34,197,94,.25)}
 
 footer{margin-top:30px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted)}
 footer a{color:var(--accent-ink)}
@@ -212,14 +214,12 @@ const ORD = {1:'১ম',2:'২য়',3:'৩য়',4:'৪র্থ',5:'৫ম',
 const ord = g => ORD[g] || bnNum(g) + 'তম';
 const $ = id => document.getElementById(id);
 
-const DEFAULT_GRADE = 9;
-
 /* ---- overview: all 20 grades ---- */
 const ovRows = [];
 for (let g = 1; g <= 20; g++){
   const a = SCALES[g].a, b = SCALES[g].b;
   const pct = Math.round(((b[0]-a[0])/a[0])*1000)/10;
-  ovRows.push(`<tr${g === DEFAULT_GRADE ? ' class="hl-row"' : ''}>
+  ovRows.push(`<tr>
     <td class="lbl">${ord(g)} গ্রেড</td>
     <td>${bnNum(a.length)}</td>
     <td>${tk(a[0])} – ${tk(a[a.length-1])}</td>
@@ -238,7 +238,7 @@ const chips = arr => '<div class="chips">' + arr.map(v => `<span class="chip">${
 const detRows = [];
 for (let g = 1; g <= 20; g++){
   const a = SCALES[g].a, b = SCALES[g].b;
-  detRows.push(`<tr${g === DEFAULT_GRADE ? ' class="hl-row"' : ''}>
+  detRows.push(`<tr>
     <td class="lbl">${ord(g)} গ্রেড</td>
     <td class="steps-cell">${chips(a)}</td>
     <td class="col-2026 steps-cell">${chips(b)}</td>
