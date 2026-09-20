@@ -70,6 +70,17 @@ h1{font-size:clamp(26px,5.4vw,40px); line-height:1.2; letter-spacing:-.01em; mar
   padding-bottom:9px; margin-bottom:14px; border-bottom:1px solid var(--line)}
 .legend.mt{margin-top:22px}
 
+/* ---- futuristic data panel: starfield-lit card ---- */
+.sm-panel{position:relative; overflow:hidden; background:var(--bg2); border-color:var(--line-2);
+  border-inline-start:3px solid var(--gold)}
+.sm-panel canvas.sm-canvas{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0}
+.sm-panel::before,.sm-panel::after{content:""; position:absolute; width:16px; height:16px; z-index:2; pointer-events:none; opacity:.85}
+.sm-panel::before{top:8px; left:8px; border-top:2px solid var(--gold); border-left:2px solid var(--gold)}
+.sm-panel::after{bottom:8px; right:8px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold)}
+.panel-inner{position:relative; z-index:1; background:rgba(8,13,10,.74); backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  padding:22px; border-radius:calc(var(--r) - 2px)}
+.sm-panel .legend{color:var(--ink); text-shadow:0 0 12px rgba(234,179,8,.25)}
+
 .about p{color:var(--ink-2); margin:0 0 10px}
 .about p:last-child{margin-bottom:0}
 .about ul{margin:0 0 10px; padding-inline-start:20px; color:var(--ink-2)}
@@ -107,7 +118,7 @@ footer a{color:var(--accent-ink)}
 </header>
 
 <div class="hero">
-  <canvas id="sm-canvas" aria-hidden="true"></canvas>
+  <canvas class="sm-canvas" aria-hidden="true"></canvas>
   <div class="inner">
     <div class="crest"><span class="sro">সম্পর্কে</span></div>
     <h1>বেতন নির্ধারণী ২০২৬</h1>
@@ -116,7 +127,9 @@ footer a{color:var(--accent-ink)}
 </div>
 
 <div class="wrap">
-  <div class="card card-pad about" style="margin-top:20px">
+  <div class="card sm-panel about" style="margin-top:20px">
+    <canvas class="sm-canvas" aria-hidden="true"></canvas>
+    <div class="panel-inner">
     <div class="legend">সম্পর্কে</div>
     <p>জাতীয় বেতনস্কেল, ২০২৬ (এস.আর.ও. নং ৩৪৭-আইন/২০২৬, অর্থ মন্ত্রণালয়, ১৭ সেপ্টেম্বর ২০২৬) অনুযায়ী সরকারি কর্মচারীদের মূল বেতন নির্ধারণ, ধাপে ধাপে প্রাপ্য অংশ, এবং ৩১ ডিসেম্বর ২০২৭ পর্যন্ত চাকরি (বেতন ও ভাতাদি) আদেশ, ২০১৫ এর হারে চলমান ভাতাদির হিসাব — একটি পাতায়।</p>
 
@@ -149,6 +162,7 @@ footer a{color:var(--accent-ink)}
 
     <p><strong>লাইসেন্স:</strong> MIT। গেজেটের বিষয়বস্তু বাংলাদেশ সরকারের সরকারি দলিল।</p>
     <p><strong>কৃতজ্ঞতা স্বীকার:</strong> এই প্রকল্পটি <a href="https://astafar22.github.io/beton-calculator/" target="_blank" rel="noopener">astafar22/beton-calculator</a> থেকে ফর্ক করে তৈরি।</p>
+    </div>
   </div>
 
   <footer>
@@ -166,56 +180,59 @@ mobilemenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
 
 <script>
 (function () {
-  var canvas = document.getElementById('sm-canvas');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var wrap = canvas.parentElement;
-  var W, H, dpr, particles = [];
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var count = Math.min(50, Math.floor((window.innerWidth || 1200) / 24));
+  function initCanvas(canvas) {
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var wrap = canvas.parentElement;
+    var W, H, dpr, particles = [];
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var count;
 
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = wrap.clientWidth; H = wrap.clientHeight;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function init() {
-    particles = [];
-    for (var i = 0; i < count; i++) {
-      particles.push({ x: Math.random()*W, y: Math.random()*H,
-        vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, r: Math.random()*1.6+0.6 });
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = wrap.clientWidth; H = wrap.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      count = Math.min(50, Math.max(8, Math.floor(W / 24)));
     }
-  }
-  function step() {
-    ctx.clearRect(0, 0, W, H);
-    var maxDist = 120;
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
-      for (var j = i + 1; j < particles.length; j++) {
-        var q = particles[j];
-        var dx = p.x - q.x, dy = p.y - q.y;
-        var dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < maxDist) {
-          ctx.strokeStyle = 'rgba(34,197,94,' + (0.18 * (1 - dist / maxDist)) + ')';
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-        }
+    function init() {
+      particles = [];
+      for (var i = 0; i < count; i++) {
+        particles.push({ x: Math.random()*W, y: Math.random()*H,
+          vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, r: Math.random()*1.6+0.6 });
       }
     }
-    for (var k = 0; k < particles.length; k++) {
-      var pt = particles[k];
-      ctx.beginPath(); ctx.fillStyle = 'rgba(190,235,205,0.85)';
-      ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill();
+    function step() {
+      ctx.clearRect(0, 0, W, H);
+      var maxDist = 120;
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        for (var j = i + 1; j < particles.length; j++) {
+          var q = particles[j];
+          var dx = p.x - q.x, dy = p.y - q.y;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < maxDist) {
+            ctx.strokeStyle = 'rgba(34,197,94,' + (0.18 * (1 - dist / maxDist)) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+          }
+        }
+      }
+      for (var k = 0; k < particles.length; k++) {
+        var pt = particles[k];
+        ctx.beginPath(); ctx.fillStyle = 'rgba(190,235,205,0.85)';
+        ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill();
+      }
+      if (!reduceMotion) requestAnimationFrame(step);
     }
-    if (!reduceMotion) requestAnimationFrame(step);
+    resize(); init(); step();
+    window.addEventListener('resize', function () { resize(); init(); });
   }
-  resize(); init(); step();
-  window.addEventListener('resize', function () { resize(); init(); });
+  document.querySelectorAll('canvas.sm-canvas').forEach(initCanvas);
 })();
 </script>
 

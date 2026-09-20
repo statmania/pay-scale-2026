@@ -72,6 +72,23 @@ h1{font-size:clamp(26px,5.4vw,40px); line-height:1.2; letter-spacing:-.01em; mar
   padding-bottom:9px; margin-bottom:14px; border-bottom:1px solid var(--line); display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap}
 .legend .note-inline{font-family:inherit; font-size:12px; color:var(--muted); font-weight:400}
 
+/* ---- futuristic data panel: starfield-lit table card ---- */
+.sm-panel{position:relative; overflow:hidden; background:var(--bg2); border-color:var(--line-2);
+  border-inline-start:3px solid var(--gold)}
+.sm-panel canvas.sm-canvas{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0}
+.sm-panel::before,.sm-panel::after{content:""; position:absolute; width:16px; height:16px; z-index:2; pointer-events:none; opacity:.85}
+.sm-panel::before{top:8px; left:8px; border-top:2px solid var(--gold); border-left:2px solid var(--gold)}
+.sm-panel::after{bottom:8px; right:8px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold)}
+.panel-inner{position:relative; z-index:1; background:rgba(8,13,10,.74); backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  padding:18px; border-radius:calc(var(--r) - 2px)}
+.sm-panel .legend{color:var(--ink); text-shadow:0 0 12px rgba(234,179,8,.25)}
+.sm-panel thead th{color:var(--gold); text-shadow:0 0 8px rgba(234,179,8,.3); border-bottom:1px solid rgba(234,179,8,.35)}
+.sm-panel .col-2026{background:rgba(34,197,94,.16)}
+.sm-panel tr.hl-row td{background:rgba(234,179,8,.14)}
+.sm-panel tr.hl-row td.lbl{color:var(--gold)}
+.sm-panel .chip{background:rgba(5,8,7,.65); border-color:rgba(255,255,255,.16); box-shadow:0 0 0 1px rgba(0,0,0,.2) inset}
+.sm-panel tbody tr:hover td{background:rgba(255,255,255,.03)}
+
 .field{display:flex; flex-direction:column; gap:5px; max-width:360px}
 label{font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
 select{
@@ -134,7 +151,7 @@ footer a{color:var(--accent-ink)}
 </header>
 
 <div class="hero" id="top">
-  <canvas id="sm-canvas" aria-hidden="true"></canvas>
+  <canvas class="sm-canvas" aria-hidden="true"></canvas>
   <div class="inner">
     <div class="crest"><span class="sro">স্কেল তুলনা</span></div>
     <h1>২০১৫ বনাম ২০২৬ বেতনস্কেল</h1>
@@ -143,18 +160,20 @@ footer a{color:var(--accent-ink)}
 </div>
 
 <div class="wrap">
-  <div class="card card-pad" style="margin-top:20px">
-    <div class="legend">সব গ্রেডের সারসংক্ষেপ<span class="note-inline">প্রারম্ভিক ধাপ অনুযায়ী বৃদ্ধি</span></div>
-    <div class="scroll"><table id="overview"></table></div>
+  <div class="card sm-panel" style="margin-top:20px">
+    <canvas class="sm-canvas" aria-hidden="true"></canvas>
+    <div class="panel-inner">
+      <div class="legend">সব গ্রেডের সারসংক্ষেপ<span class="note-inline">প্রারম্ভিক ধাপ অনুযায়ী বৃদ্ধি</span></div>
+      <div class="scroll"><table id="overview"></table></div>
+    </div>
   </div>
 
-  <div class="card card-pad" style="margin-top:20px">
-    <div class="legend">গ্রেড ভিত্তিক ধাপে ধাপে তুলনা</div>
-    <div class="field">
-      <label for="grade">গ্রেড নির্বাচন করুন</label>
-      <select id="grade"></select>
+  <div class="card sm-panel" style="margin-top:20px">
+    <canvas class="sm-canvas" aria-hidden="true"></canvas>
+    <div class="panel-inner">
+      <div class="legend">সব গ্রেডের ধাপে ধাপে তুলনা</div>
+      <div class="scroll"><table id="detail"></table></div>
     </div>
-    <div class="scroll" style="margin-top:16px"><table id="detail"></table></div>
   </div>
 
   <footer>
@@ -214,28 +233,21 @@ $('overview').innerHTML =
   '<th class="col-2026">২০২৬ ধাপ</th><th class="col-2026">২০২৬ পরিসর</th><th>প্রারম্ভিক বৃদ্ধি</th></tr></thead>' +
   '<tbody>' + ovRows.join('') + '</tbody>';
 
-/* ---- grade selector + all-steps detail ---- */
-const gradeSel = $('grade');
+/* ---- all-steps detail: every grade ---- */
+const chips = arr => '<div class="chips">' + arr.map(v => `<span class="chip">${tk(v)}</span>`).join('') + '</div>';
+const detRows = [];
 for (let g = 1; g <= 20; g++){
-  const o = document.createElement('option');
-  o.value = g; o.textContent = ord(g) + ' গ্রেড  ·  ' + tk(SCALES[g].a[0]) + '–' + tk(SCALES[g].a[SCALES[g].a.length-1]);
-  gradeSel.appendChild(o);
-}
-gradeSel.value = DEFAULT_GRADE;
-
-function renderDetail(){
-  const g = +gradeSel.value;
   const a = SCALES[g].a, b = SCALES[g].b;
-  const chips = arr => '<div class="chips">' + arr.map(v => `<span class="chip">${tk(v)}</span>`).join('') + '</div>';
-  $('detail').innerHTML =
-    '<thead><tr><th class="lbl">গ্রেড</th><th class="steps-cell">২০১৫ স্কেলের সকল ধাপ</th>' +
-    '<th class="col-2026 steps-cell">২০২৬ স্কেলের সকল ধাপ</th></tr></thead>' +
-    `<tbody><tr><td class="lbl">${ord(g)} গ্রেড</td>` +
-    `<td class="steps-cell">${chips(a)}</td>` +
-    `<td class="col-2026 steps-cell">${chips(b)}</td></tr></tbody>`;
+  detRows.push(`<tr${g === DEFAULT_GRADE ? ' class="hl-row"' : ''}>
+    <td class="lbl">${ord(g)} গ্রেড</td>
+    <td class="steps-cell">${chips(a)}</td>
+    <td class="col-2026 steps-cell">${chips(b)}</td>
+  </tr>`);
 }
-gradeSel.addEventListener('change', renderDetail);
-renderDetail();
+$('detail').innerHTML =
+  '<thead><tr><th class="lbl">গ্রেড</th><th class="steps-cell">২০১৫ স্কেলের সকল ধাপ</th>' +
+  '<th class="col-2026 steps-cell">২০২৬ স্কেলের সকল ধাপ</th></tr></thead>' +
+  '<tbody>' + detRows.join('') + '</tbody>';
 
 const menubtn = $('menubtn'), mobilemenu = $('mobilemenu');
 menubtn.addEventListener('click', () => mobilemenu.classList.toggle('open'));
@@ -244,56 +256,59 @@ mobilemenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
 
 <script>
 (function () {
-  var canvas = document.getElementById('sm-canvas');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var wrap = canvas.parentElement;
-  var W, H, dpr, particles = [];
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var count = Math.min(50, Math.floor((window.innerWidth || 1200) / 24));
+  function initCanvas(canvas) {
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var wrap = canvas.parentElement;
+    var W, H, dpr, particles = [];
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var count;
 
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = wrap.clientWidth; H = wrap.clientHeight;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function init() {
-    particles = [];
-    for (var i = 0; i < count; i++) {
-      particles.push({ x: Math.random()*W, y: Math.random()*H,
-        vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, r: Math.random()*1.6+0.6 });
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = wrap.clientWidth; H = wrap.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      count = Math.min(50, Math.max(8, Math.floor(W / 24)));
     }
-  }
-  function step() {
-    ctx.clearRect(0, 0, W, H);
-    var maxDist = 120;
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
-      for (var j = i + 1; j < particles.length; j++) {
-        var q = particles[j];
-        var dx = p.x - q.x, dy = p.y - q.y;
-        var dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < maxDist) {
-          ctx.strokeStyle = 'rgba(34,197,94,' + (0.18 * (1 - dist / maxDist)) + ')';
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-        }
+    function init() {
+      particles = [];
+      for (var i = 0; i < count; i++) {
+        particles.push({ x: Math.random()*W, y: Math.random()*H,
+          vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, r: Math.random()*1.6+0.6 });
       }
     }
-    for (var k = 0; k < particles.length; k++) {
-      var pt = particles[k];
-      ctx.beginPath(); ctx.fillStyle = 'rgba(190,235,205,0.85)';
-      ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill();
+    function step() {
+      ctx.clearRect(0, 0, W, H);
+      var maxDist = 120;
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        for (var j = i + 1; j < particles.length; j++) {
+          var q = particles[j];
+          var dx = p.x - q.x, dy = p.y - q.y;
+          var dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < maxDist) {
+            ctx.strokeStyle = 'rgba(34,197,94,' + (0.18 * (1 - dist / maxDist)) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+          }
+        }
+      }
+      for (var k = 0; k < particles.length; k++) {
+        var pt = particles[k];
+        ctx.beginPath(); ctx.fillStyle = 'rgba(190,235,205,0.85)';
+        ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2); ctx.fill();
+      }
+      if (!reduceMotion) requestAnimationFrame(step);
     }
-    if (!reduceMotion) requestAnimationFrame(step);
+    resize(); init(); step();
+    window.addEventListener('resize', function () { resize(); init(); });
   }
-  resize(); init(); step();
-  window.addEventListener('resize', function () { resize(); init(); });
+  document.querySelectorAll('canvas.sm-canvas').forEach(initCanvas);
 })();
 </script>
 
